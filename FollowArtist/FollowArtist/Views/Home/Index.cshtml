@@ -1,0 +1,11 @@
+﻿@model IEnumerable<FollowArtist.Models.Gig>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul>
+    @foreach (var gig in Model)
+    {
+        <li>@gig.DateTime @gig.Atrist.Name @gig.Genre.Name</li>
+    }
+</ul>
