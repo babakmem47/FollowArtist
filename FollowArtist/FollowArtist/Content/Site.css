@@ -45,3 +45,59 @@ textarea {
 .navbar-inverse .navbar-nav > li > a {
     color: #fff;
 }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #c813127a;
+}
+
+.dropdown-menu {
+    box-shadow: none;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+body {
+  font-size: 17px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    padding: 20px 15px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+select.form-control {
+    padding: 0 15px;
+    height: 40px;
+}
+
+.btn {
+    font-size: 17px;
+    padding: 7px 20px;
+    border-radius: 9px;
+}
