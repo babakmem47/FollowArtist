@@ -172,9 +172,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\GigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="EntityConfigurations\AttendanceConfiguration.cs" />
     <Compile Include="EntityConfigurations\FollowConfiguration.cs" />
     <Compile Include="EntityConfigurations\GenreConfiguration.cs" />
     <Compile Include="EntityConfigurations\GigConfiguration.cs" />
@@ -197,10 +199,19 @@
     <Compile Include="Migrations\201901070859126_AddGigAndGenreAndOverrideConventions.Designer.cs">
       <DependentUpon>201901070859126_AddGigAndGenreAndOverrideConventions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901111747274_AddAttendance.cs" />
+    <Compile Include="Migrations\201901111747274_AddAttendance.Designer.cs">
+      <DependentUpon>201901111747274_AddAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901111808281_RemoveCascadeDeleteForGigAttendance.cs" />
+    <Compile Include="Migrations\201901111808281_RemoveCascadeDeleteForGigAttendance.Designer.cs">
+      <DependentUpon>201901111808281_RemoveCascadeDeleteForGigAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\FutureDate.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -292,6 +303,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901070859126_AddGigAndGenreAndOverrideConventions.resx">
       <DependentUpon>201901070859126_AddGigAndGenreAndOverrideConventions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901111747274_AddAttendance.resx">
+      <DependentUpon>201901111747274_AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901111808281_RemoveCascadeDeleteForGigAttendance.resx">
+      <DependentUpon>201901111808281_RemoveCascadeDeleteForGigAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
