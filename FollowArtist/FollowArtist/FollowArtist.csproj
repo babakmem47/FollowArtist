@@ -176,6 +176,7 @@
     <Compile Include="Controllers\GigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Dtos\AttendanceDto.cs" />
     <Compile Include="EntityConfigurations\AttendanceConfiguration.cs" />
     <Compile Include="EntityConfigurations\FollowConfiguration.cs" />
     <Compile Include="EntityConfigurations\GenreConfiguration.cs" />

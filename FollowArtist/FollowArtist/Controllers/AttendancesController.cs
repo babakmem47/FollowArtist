@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using FollowArtist.Dtos;
 
 namespace FollowArtist.Controllers
 {
@@ -16,18 +17,23 @@ namespace FollowArtist.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult AddNewAttendance([FromBody] int gigId)
+        public IHttpActionResult AddNewAttendance(AttendanceDto dto)
         {
             var currentUserId = User.Identity.GetUserId();
+            var alreadyExist = _context.Attendances.Any(a => a.AttendeeId == currentUserId && a.GigId == dto.GigId);
+            if (alreadyExist)
+            {
+                return BadRequest("The attendance already exists.");
+            }
             var attendance = new Attendance
             {
                 AttendeeId = currentUserId,
-                GigId = gigId
+                GigId = dto.GigId
             };
 
             _context.Attendances.Add(attendance);
             _context.SaveChanges();
-            return Ok(attendance);
+            return Ok();
         }
 
         public IHttpActionResult GetAllAttendances()
