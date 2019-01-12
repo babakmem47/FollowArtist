@@ -153,6 +153,7 @@ select.form-control {
 .gigs > li .details .artist {
     font-weight: bold;
     display: block;
+    margin-bottom: 8px;
 }
 
 .gigs > li .details .genre {
