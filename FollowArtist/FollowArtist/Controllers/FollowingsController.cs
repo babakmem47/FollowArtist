@@ -1,6 +1,7 @@
 ﻿using FollowArtist.Dtos;
 using FollowArtist.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 
@@ -41,7 +42,7 @@ namespace FollowArtist.Controllers
         [HttpGet]
         public IHttpActionResult GetAllFollowings()
         {
-            var allFollows = _context.Followings.ToList();
+            var allFollows = _context.Followings.Include(f => f.Follower).ToList();
 
             return Ok(allFollows);
         }

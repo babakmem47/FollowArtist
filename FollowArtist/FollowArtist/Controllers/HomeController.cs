@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +20,14 @@ namespace FollowArtist.Controllers
         public ActionResult Index()
         {
             var gigs = _context.Gigs.Include(gg => gg.Genre).Include(gg => gg.Atrist).ToList();
-            return View(gigs);
+
+            var viewModel = new HomeViewModel
+            {
+                UpcomingGigs = gigs,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
 //        public ActionResult About()
