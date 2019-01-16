@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FollowArtist.Models
 {
-    public class Follow
+    public class Following
     {
         public ApplicationUser Follower { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        public string FollowerId { get; set; }
+        public string FollowerId { get; set; }  
 
         public ApplicationUser Followee { get; set; }
 

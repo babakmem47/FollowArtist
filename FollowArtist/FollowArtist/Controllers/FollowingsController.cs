@@ -7,39 +7,41 @@ using System.Web.Http;
 namespace FollowArtist.Controllers
 {
     [Authorize]
-    public class FollowsController : ApiController
+    public class FollowingsController : ApiController
     {
         private ApplicationDbContext _context;
 
-        public FollowsController()
+        public FollowingsController()
         {
             _context = new ApplicationDbContext();
         }
 
-        public IHttpActionResult AddFollower(FollowDto dto)
+        [HttpPost]
+        public IHttpActionResult AddFollower(FollowingDto dto)
         {
             var currentUserId = User.Identity.GetUserId();
-            var alreadyExist = _context.Follows.Any(fl => fl.FolloweeId == dto.ArtistId && fl.FollowerId == currentUserId);
+            var alreadyExist = _context.Followings.Any(fl => fl.FolloweeId == dto.ArtistId && fl.FollowerId == currentUserId);
             if (alreadyExist)
             {
                 return BadRequest("Follower already exist!");
             }
 
-            var newFollow = new Follow
+            var following = new Following
             {
                 FolloweeId = dto.ArtistId,
                 FollowerId = currentUserId
             };
 
-            _context.Follows.Add(newFollow);
+            _context.Followings.Add(following);
             _context.SaveChanges();
 
             return Ok();
         }
 
-        public IHttpActionResult GetAllFollows()
+        [HttpGet]
+        public IHttpActionResult GetAllFollowings()
         {
-            var allFollows = _context.Follows.ToList();
+            var allFollows = _context.Followings.ToList();
 
             return Ok(allFollows);
         }

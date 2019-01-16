@@ -1,6 +1,6 @@
 ﻿namespace FollowArtist.Dtos
 {
-    public class FollowDto
+    public class FollowingDto
     {
         public string ArtistId { get; set; }
     }
