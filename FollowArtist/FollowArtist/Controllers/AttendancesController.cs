@@ -1,4 +1,6 @@
-﻿using FollowArtist.Models;
+﻿using System.Data.Entity;
+using System.Collections.Generic;
+using FollowArtist.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
@@ -36,11 +38,79 @@ namespace FollowArtist.Controllers
             return Ok();
         }
 
-        public IHttpActionResult GetAllAttendances()
+
+        ////////////// Get //////////////////////
+        [HttpGet]
+        public IEnumerable<Attendance> Get()
         {
             var attendances = _context.Attendances.ToList();
 
-            return Ok(attendances);
+            return attendances;
         }
+
+        public IEnumerable<AttendanceDto> GetAll()
+        {
+            var attendances = _context.Attendances
+                .Include(a => a.Attendee)
+                .Include(a => a.Gig.Genre)
+                .Include(a => a.Gig.Atrist)
+                .ToList();
+
+            return attendances.Select(a => new AttendanceDto
+            {
+                Attendee = new UserDto
+                {
+                    Name = a.Attendee.Name
+                },
+                GigToAttend = new GigDto
+                {
+                    GigId = a.Gig.Id,
+                    DateTime = a.Gig.DateTime,
+                    Venue = a.Gig.Venue,
+                    Performer = new UserDto
+                    {
+                        Name = a.Gig.Atrist.Name
+                    },
+                    Genre = new GenreDto
+                    {
+                        Name = a.Gig.Genre.Name
+                    }
+                }
+            });
+        }
+
+        public IEnumerable<AttendanceDto> GetAll(int id)
+        {
+            var attendances = _context.Attendances
+                .Include(a => a.Attendee)
+                .Include(a => a.Gig.Genre)
+                .Include(a => a.Gig.Atrist)
+                .Where(a => a.Gig.Id == id)
+                .ToList();
+
+            return attendances.Select(a => new AttendanceDto
+            {
+                Attendee = new UserDto
+                {
+                    Name = a.Attendee.Name
+                },
+                GigToAttend = new GigDto
+                {
+                    GigId = a.Gig.Id,
+                    DateTime = a.Gig.DateTime,
+                    Venue = a.Gig.Venue,
+                    Performer = new UserDto
+                    {
+                        Name = a.Gig.Atrist.Name
+                    },
+                    Genre = new GenreDto
+                    {
+                        Name = a.Gig.Genre.Name
+                    }
+                }
+            });
+        }
+
+
     }
 }

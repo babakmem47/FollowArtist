@@ -201,3 +201,4 @@ E:\Projects\GitHub Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\F
 D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.AddAttendance.resources
 D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.RemoveCascadeDeleteForGigAttendance.resources
 E:\Projects\GitHub Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.AddFollow1.resources
+D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.AddFollow1.resources

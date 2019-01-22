@@ -1,6 +1,7 @@
 ﻿using FollowArtist.Dtos;
 using FollowArtist.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
@@ -40,11 +41,24 @@ namespace FollowArtist.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllFollowings()
+        public IEnumerable<FollowingDto> GetAllFollowings()
         {
             var allFollows = _context.Followings.Include(f => f.Follower).ToList();
 
-            return Ok(allFollows);
+            return allFollows.Select(f => new FollowingDto()
+            {
+                Artist = new UserDto
+                {
+                    Id = f.Followee.Id,
+                    Name = f.Followee.Name
+                },
+                Follower = new UserDto()
+                {
+                    Id = f.Follower.Id,
+                    Name = f.Follower.Name
+                }
+                
+            });
         }
     }
 }

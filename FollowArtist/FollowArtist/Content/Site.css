@@ -117,7 +117,8 @@ select.form-control {
 .gigs > li .details {
     position: absolute;
     top: 0;
-    left: 100px;
+    left: 90px;
+    min-width: 190px;
 }
 
 .gigs > li .date {
@@ -143,12 +144,6 @@ select.form-control {
     padding: 6px 12px;
 }
 
-.gigs > li .details {
-    position: absolute;
-    top: 0;
-    left: 100px;
-    min-width: 150px;
-}
 
 .gigs > li .details .artist {
     font-weight: bold;
