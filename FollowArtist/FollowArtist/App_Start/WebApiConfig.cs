@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace FollowArtist
 {
@@ -9,15 +6,16 @@ namespace FollowArtist
     {
         public static void Register(HttpConfiguration config)
         {
-            config.MapHttpAttributeRoutes();
+            //////////////////////////////////////////////////////
+            config.MapHttpAttributeRoutes();                    
 
             config.Routes.MapHttpRoute(
                 name: "ApiById",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new {id = RouteParameter.Optional},
-                constraints: new {id = @"^[0-9]+$"}
+                defaults: new { id = RouteParameter.Optional },
+                constraints: new { id = @"^[0-9]+$" }
             );
-            
+
             config.Routes.MapHttpRoute(
                 name: "ApiByName",
                 routeTemplate: "api/{controller}/{action}/{name}",
@@ -28,15 +26,15 @@ namespace FollowArtist
             config.Routes.MapHttpRoute(
                 name: "ApiByAction",
                 routeTemplate: "api/{controller}/{Action}",
-                defaults: new { action="Get" }
+                defaults: new { action = "Get" }
             );
+            ////////////////////////////////////////////////////////
 
-
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
     }
 }
