@@ -10,6 +10,8 @@ namespace FollowArtist.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Following> Followings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -17,6 +19,7 @@ namespace FollowArtist.Models
             modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new AttendanceConfiguration());
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new UserNotificationConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

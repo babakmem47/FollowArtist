@@ -33,6 +33,25 @@ textarea {
     border: 2px solid red;
 }
 
+.voffset {
+    margin-top: 10px;
+}
+
+.voffset2 {
+    margin-top: 20px;
+}
+
+.voffset3 {
+    margin-top: 30px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 50px;
+}
 
 /*    Bootstrap Override   */
 .navbar-inverse {
@@ -151,6 +170,21 @@ select.form-control {
     margin-bottom: 8px;
 }
 
+.gigs > li .details .venue {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
 .gigs > li .details .genre {
+    font-size: 14px;
+}
+
+.gigs > li .editcancelLink {
     font-size: 12px;
+    display: none;
+}
+
+.gigs > li:hover .editcancelLink {
+    display: block;
 }

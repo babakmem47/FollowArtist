@@ -1,0 +1,80 @@
+﻿@model FollowArtist.Controllers.GigViewModel
+
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+<ul class="gigs voffset4">
+    @foreach (var gig in Model.Gigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="venue">
+                    @gig.Venue
+                </span>
+                <span class="genre">
+                    @gig.Genre.Name
+                </span>
+                <div class="editcancelLink">
+                    <a href="#" class="js--gig" gig-data-id="@gig.Id">Edit</a>|
+                    <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">Cancel</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document)
+            .ready(function() {
+                $(".js-cancel-gig")
+                    .click(function(e) {
+                        var cancelLink = $(e.target);
+                        console.log(cancelLink.attr("data-gig-id"));
+                        bootbox.dialog({
+                            title: 'Confirm',
+                            message: "<p>Are you sure you want to cancel this gig?</p>",
+                            buttons: {
+                                yes: {
+                                    label: "Yes",
+                                    className: 'btn-danger',
+                                    callback: function () {
+                                        $.ajax({
+                                                url: "/api/gigs/" + cancelLink.attr("data-gig-id"),
+                                                method: "DELETE"
+                                            })
+                                            .done(function () {
+                                                cancelLink.parents("li")
+                                                    .fadeOut(1000, function() {
+                                                        console.log("removed");
+                                                    });
+                                            })
+                                            .fail(function () {
+                                            
+                                            });
+                                    }
+                                },
+                                no: {
+                                    label: "No",
+                                    className: 'btn-default'
+                                }
+                            }
+                        });
+                    });
+
+            });
+    </script>
+}
+    

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -57,6 +58,30 @@ namespace FollowArtist.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        
+        [Authorize]
+        public ActionResult UpcomigGigs()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                .Include(g => g.Atrist)
+                .Include(g => g.Genre)
+                .Where( g => g.ArtistId == currentUserId && !g.IsCanceled)
+                .ToList();
 
+            var viewModel = new GigViewModel
+            {
+                Gigs = gigs,
+                Heading = "My Upcoming Gigs"
+            };
+            return View("UpcomingGigs", viewModel);
+        }
+
+    }
+
+    public class GigViewModel
+    {
+        public IEnumerable<Gig> Gigs { get; set; }
+        public string Heading { get; set; }
     }
 }
