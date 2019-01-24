@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201901231123447_AddIsCanceledToGig.Designer.cs">
       <DependentUpon>201901231123447_AddIsCanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901231844317_MakeDateTimeInNotificationNullable.cs" />
+    <Compile Include="Migrations\201901231844317_MakeDateTimeInNotificationNullable.Designer.cs">
+      <DependentUpon>201901231844317_MakeDateTimeInNotificationNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901231123447_AddIsCanceledToGig.resx">
       <DependentUpon>201901231123447_AddIsCanceledToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901231844317_MakeDateTimeInNotificationNullable.resx">
+      <DependentUpon>201901231844317_MakeDateTimeInNotificationNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

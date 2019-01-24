@@ -6,9 +6,11 @@ namespace FollowArtist
     {
         public static void Register(HttpConfiguration config)
         {
+            
+            
             //////////////////////////////////////////////////////
-            config.MapHttpAttributeRoutes();                    
-
+            config.MapHttpAttributeRoutes();
+            
             config.Routes.MapHttpRoute(
                 name: "ApiById",
                 routeTemplate: "api/{controller}/{id}",
@@ -29,12 +31,12 @@ namespace FollowArtist
                 defaults: new { action = "Get" }
             );
             ////////////////////////////////////////////////////////
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
         }
     }
 }

@@ -33,29 +33,32 @@ namespace FollowArtist.Controllers.Api
             
             gig.IsCanceled = true;
             
-            //var notification = new Notification
-            //{
-            //    GigId = gig.Id,
-            //    Type = NotificationType.IsCanceled,
-            //    DateTime = DateTime.Now
-            //};
+            var notification = new Notification
+            {
+                GigId = gig.Id,
+                Type = NotificationType.IsCanceled,
+                DateTime = DateTime.Now
+            };
 
-            //_context.Notifications.Add(notification);
+            _context.Notifications.Add(notification);
 
 
-            //var users = _context.Attendances
-            //    .Include(at => at.Gig)
-            //    .Where(at => at.GigId == id).ToList();
+            var users = _context.Attendances
+                .Include(at => at.Gig)
+                .Where(at => at.GigId == id).ToList();
             
 
-            //var usernotification = new UserNotification();
-
-            //foreach (var user in users)
-            //{
-            //    usernotification.UserId = user.AttendeeId;
-            //    usernotification.GigId = user.GigId;
-            //    _context.UserNotifications.Add(usernotification);
-            //}
+            
+            foreach (var user in users)
+            {
+                var usernotification = new UserNotification
+                {
+                    UserId = user.AttendeeId,
+                    GigId = user.GigId
+                };
+                _context.UserNotifications.Add(usernotification);
+               
+            }
 
             _context.SaveChanges();
 
@@ -63,7 +66,7 @@ namespace FollowArtist.Controllers.Api
         }
         
         [HttpGet]
-        public IEnumerable<GigDto> GetAllGigs()
+        public IEnumerable<GigDto> GetAll()
         {
             var gigs = _context.Gigs
                 .Include(gg => gg.Atrist)
@@ -72,6 +75,7 @@ namespace FollowArtist.Controllers.Api
 
             return gigs.Select(g => new GigDto()
             {
+                GigId = g.Id,
                 Performer = new UserDto
                 {
                     Name = g.Atrist.Name
