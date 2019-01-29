@@ -19,7 +19,7 @@ namespace FollowArtist.Controllers
 
         public ActionResult Index()
         {
-            var gigs = _context.Gigs.Include(gg => gg.Genre).Include(gg => gg.Atrist).ToList();
+            var gigs = _context.Gigs.Include(gg => gg.Genre).Include(gg => gg.Artist).ToList();
 
             var viewModel = new HomeViewModel
             {

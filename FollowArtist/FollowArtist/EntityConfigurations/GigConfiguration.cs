@@ -1,5 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using FollowArtist.Models;
+﻿using FollowArtist.Models;
+using System.Data.Entity.ModelConfiguration;
 
 namespace FollowArtist.EntityConfigurations
 {
@@ -16,15 +16,16 @@ namespace FollowArtist.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(200);
 
+
             //// Relatin ////
             HasRequired(gg => gg.Genre)
                 .WithMany(gn => gn.Gigs)
                 .HasForeignKey(gg => gg.GenreId);
 
-            HasRequired(gg => gg.Atrist)
+            HasRequired(gg => gg.Artist)
                 .WithMany()
                 .HasForeignKey(gg => gg.ArtistId)
                 .WillCascadeOnDelete(false);
-        }        
+        }
     }
 }

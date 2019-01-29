@@ -17,7 +17,8 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @gig.Atrist.Name
+                    @Html.ActionLink(gig.Artist.Name, "Details", "Gig", new { id = gig.Id }, null)
+                    @*@gig.Artist.Name*@
                     @if (Model.ShowActions)
                     {
                         <button data-artist-id="@gig.ArtistId" class="btn btn-link btn-sm pull-right js-toggle-follow">Follow?</button>

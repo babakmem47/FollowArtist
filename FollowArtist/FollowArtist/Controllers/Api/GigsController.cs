@@ -69,7 +69,7 @@ namespace FollowArtist.Controllers.Api
         public IEnumerable<GigDto> GetAll()
         {
             var gigs = _context.Gigs
-                .Include(gg => gg.Atrist)
+                .Include(gg => gg.Artist)
                 .Include(gg => gg.Genre)
                 .ToList();
 
@@ -78,7 +78,7 @@ namespace FollowArtist.Controllers.Api
                 GigId = g.Id,
                 Performer = new UserDto
                 {
-                    Name = g.Atrist.Name
+                    Name = g.Artist.Name
                 },
                 Genre = new GenreDto
                 {

@@ -1,10 +1,10 @@
-﻿using System.Data.Entity;
-using System.Collections.Generic;
+﻿using FollowArtist.Dtos;
 using FollowArtist.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using FollowArtist.Dtos;
 
 namespace FollowArtist.Controllers
 {
@@ -38,6 +38,21 @@ namespace FollowArtist.Controllers
             return Ok();
         }
 
+        [HttpDelete]
+        public IHttpActionResult DeleteAttendance(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var attendance = _context.Attendances.SingleOrDefault(a => a.AttendeeId == userId && a.GigId == id);
+            if (attendance == null)
+            {
+                return NotFound();
+            }
+
+            _context.Attendances.Remove(attendance);
+            _context.SaveChanges();
+
+            return Ok(id);
+        }
 
         ////////////// Get //////////////////////
         [HttpGet]
@@ -53,7 +68,7 @@ namespace FollowArtist.Controllers
             var attendances = _context.Attendances
                 .Include(a => a.Attendee)
                 .Include(a => a.Gig.Genre)
-                .Include(a => a.Gig.Atrist)
+                .Include(a => a.Gig.Artist)
                 .ToList();
 
             return attendances.Select(a => new AttendanceDto
@@ -69,7 +84,7 @@ namespace FollowArtist.Controllers
                     Venue = a.Gig.Venue,
                     Performer = new UserDto
                     {
-                        Name = a.Gig.Atrist.Name
+                        Name = a.Gig.Artist.Name
                     },
                     Genre = new GenreDto
                     {
@@ -84,7 +99,7 @@ namespace FollowArtist.Controllers
             var attendances = _context.Attendances
                 .Include(a => a.Attendee)
                 .Include(a => a.Gig.Genre)
-                .Include(a => a.Gig.Atrist)
+                .Include(a => a.Gig.Artist)
                 .Where(a => a.Gig.Id == id)
                 .ToList();
 
@@ -101,7 +116,7 @@ namespace FollowArtist.Controllers
                     Venue = a.Gig.Venue,
                     Performer = new UserDto
                     {
-                        Name = a.Gig.Atrist.Name
+                        Name = a.Gig.Artist.Name
                     },
                     Genre = new GenreDto
                     {

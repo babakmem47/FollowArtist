@@ -8,6 +8,11 @@
         public Gig Gig { get; set; }
         public int GigId { get; set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; private set; }
+
+        public void Read()
+        {
+            this.IsRead = true;
+        }
     }
 }

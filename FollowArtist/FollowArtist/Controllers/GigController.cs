@@ -1,12 +1,9 @@
-﻿using System;
-using System.Data.Entity;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using FollowArtist.Models;
+﻿using FollowArtist.Models;
 using FollowArtist.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FollowArtist.Controllers
 {
@@ -58,15 +55,15 @@ namespace FollowArtist.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        
+
         [Authorize]
         public ActionResult UpcomigGigs()
         {
             var currentUserId = User.Identity.GetUserId();
             var gigs = _context.Gigs
-                .Include(g => g.Atrist)
+                .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where( g => g.ArtistId == currentUserId && !g.IsCanceled)
+                .Where(g => g.ArtistId == currentUserId && !g.IsCanceled)
                 .ToList();
 
             var viewModel = new GigViewModel
@@ -77,11 +74,32 @@ namespace FollowArtist.Controllers
             return View("UpcomingGigs", viewModel);
         }
 
-    }
+        public ActionResult Details(int id)
+        {
+            var gig = _context.Gigs
+                .Include(g => g.Artist)
+                .Single(g => g.Id == id);
 
-    public class GigViewModel
-    {
-        public IEnumerable<Gig> Gigs { get; set; }
-        public string Heading { get; set; }
+            var viewModel = new GigDetailViewModel
+            {
+                Gig = gig
+            };
+
+            var currentUserId = User.Identity.GetUserId();
+            viewModel.IsFollowing = _context.Followings
+                .Any(f => f.FollowerId == currentUserId && f.FolloweeId == gig.Artist.Id);
+            viewModel.ButtonType = "btn-default";
+            viewModel.ButtonText = "Follow";
+            if (viewModel.IsFollowing)
+            {
+                viewModel.ButtonType = "btn-info";
+                viewModel.ButtonText = "Following";
+            }
+            viewModel.IsAttending = _context.Attendances
+                .Any(at => at.AttendeeId == currentUserId && at.Gig.Id == id);
+
+            return View("Details", viewModel);
+        }
+
     }
 }

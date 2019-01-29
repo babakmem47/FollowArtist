@@ -6,7 +6,7 @@ namespace FollowArtist.Models
     {
         public int Id { get; set; }
 
-        public ApplicationUser Atrist { get; set; }
+        public ApplicationUser Artist { get; set; }
 
         public string ArtistId { get; set; }
 
