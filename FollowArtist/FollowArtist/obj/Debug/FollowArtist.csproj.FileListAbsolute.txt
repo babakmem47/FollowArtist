@@ -211,3 +211,6 @@ D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\F
 D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\bin\cs\FollowArtist.resources.dll
 D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.201901290848025_RenameArtistPropInGig.cs.resources
 D:\Projects\Github Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\cs\FollowArtist.resources.dll
+E:\Projects\GitHub Repository\FollowArtist\FollowArtist\FollowArtist\bin\cs\FollowArtist.resources.dll
+E:\Projects\GitHub Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\FollowArtist.Migrations.201901290848025_RenameArtistPropInGig.cs.resources
+E:\Projects\GitHub Repository\FollowArtist\FollowArtist\FollowArtist\obj\Debug\cs\FollowArtist.resources.dll

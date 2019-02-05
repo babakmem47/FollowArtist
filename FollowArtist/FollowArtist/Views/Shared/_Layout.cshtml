@@ -39,5 +39,19 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+<script>
+    $(document).ready(function () {
+        console.log("salam");
+        $.getJSON("/api/usernotifications",
+            function(count) {
+                console.log(count);
+                $(".js-notification-count")
+                    .text(count)
+                    .removeClass("hide")
+                    .addClass("animated bounceInDown");
+            });
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 </body>
 </html>
